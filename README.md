@@ -64,20 +64,22 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #### Task Routes
 
+```
 ##### Task List
 
-http://localhost:8080/#/taskslist
+http://yourdomainname:8080/#/taskslist
 
 ##### Task Update
 
-http://localhost:8080/#/updatetask/:id
+http://yourdomainname:8080/#/updatetask/:id
 
 ##### Task Delete
 
-http://localhost:8080/#/deletetask/:id
+http://yourdomainname:8080/#/deletetask/:id
+```
 
 #### User Routes
 
 ##### User List
 
-http://localhost:8080/#/userslist
+http://yourdomainname:8080/#/userslist
