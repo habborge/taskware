@@ -44,28 +44,31 @@ export default {
     };
   },
   created() {
-    fetch("http://localhost:3000/api/tasks/")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        const { items = [] } = data;
-        const tasks = items.map(item => {
-          const { authorId = {} } = item;
-          const { firstname = "Anonimo", lastname = "" } = authorId;
-          return {
-            _id: item._id,
-            description: item.description,
-            author: `${firstname} ${lastname}`,
-            status: item.status,
-            createdAt: item.createdAt
-          };
-        });
-        this.items = tasks;
-        this.loading = false;
-      });
+    this.read();
   },
   methods: {
+    read() {
+      fetch("http://localhost:3000/api/tasks/")
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          const { items = [] } = data;
+          const tasks = items.map(item => {
+            const { authorId = {} } = item;
+            const { firstname = "Anonimo", lastname = "" } = authorId;
+            return {
+              _id: item._id,
+              description: item.description,
+              author: `${firstname} ${lastname}`,
+              status: item.status,
+              createdAt: item.createdAt
+            };
+          });
+          this.items = tasks;
+          this.loading = false;
+        });
+    },
     create(post) {
       fetch("http://localhost:3000/api/tasks", {
         method: "POST",
@@ -78,7 +81,8 @@ export default {
           return response.json();
         })
         .then(data => {
-          this.items.unshift(data);
+          this.read();
+          //this.items.unshift(data);
         });
     }
   }

@@ -7,10 +7,11 @@
     <div class="form-group">
       <label>Author:</label>
       <select class="form-control" v-model="userId">
+        <option disabled value>Please select Author</option>
         <option v-for="user in users" :key="user._id" :value="user._id">{{user.fullname}}</option>
       </select>
     </div>
-    <button type="button" class="btn btn-primary" @click="save">Add Task</button>
+    <button type="button" class="btn btn-primary" @click="validate">Add Task</button>
   </form>
 </template>
 
@@ -43,6 +44,13 @@ export default {
       });
   },
   methods: {
+    validate() {
+      if (this.userId && this.description) {
+        this.save();
+      } else {
+        alert("Please all fields are required");
+      }
+    },
     save() {
       this.$emit("save", {
         description: this.description,

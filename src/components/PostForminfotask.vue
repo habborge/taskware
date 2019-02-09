@@ -77,10 +77,10 @@ export default {
   methods: {
     save() {
       this.stateTask = "0";
-      console.log(this.status);
+      //console.log(this.status);
       if (this.status == true) {
         this.stateTask = "1";
-        console.log(this.stateTask);
+        //console.log(this.stateTask);
       }
 
       this.$emit("save", {
