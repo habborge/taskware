@@ -12,7 +12,7 @@
       <label>e-mail:</label>
       <input type="text" class="form-control" v-model="email">
     </div>
-    <button type="button" class="btn btn-primary" @click="save">Add User</button>
+    <button type="button" class="btn btn-primary" @click="validate">Add User</button>
   </form>
 </template>
 
@@ -27,6 +27,18 @@ export default {
     };
   },
   methods: {
+    validate() {
+      if (this.firstname && this.lastname && this.email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (re.test(this.email)) {
+          this.save();
+        } else {
+          alert("Please email is no valid!!");
+        }
+      } else {
+        alert("Please all fields are required!!");
+      }
+    },
     save() {
       this.$emit("save", {
         firstname: this.firstname,
